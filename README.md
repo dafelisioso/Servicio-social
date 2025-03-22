@@ -31,14 +31,11 @@ Asimismo, para obtener intervalos de confianza, realizamos varias simulaciones a
 Análisis de Comunidades a partir de la Temperatura
 Utilizando los datos geográficos y de temperatura a lo largo de las décadas desde 1850, queremos ver cuáles son algunas comunidades que se forman y cómo han cambiado a lo largo del tiempo.
 
-Primero, teniendo los datos de [completar con la fuente de los datos], interpolamos los datos vacíos bajo los siguientes criterios:
+Primero, teniendo los datos de , interpolamos los datos vacíos bajo los siguientes criterios:
 
-[Criterio 1]
-[Criterio 2]
-[Criterio 3]
-Para cada punto del mapa, calculamos su información mutua con todos los otros puntos para cada década (también se probó con correlación de Pearson, pero al no limitarse a variables en números reales ni a relaciones lineales, la información mutua es más general [referencia]). Este proceso, al ser computacionalmente pesado, se realizó utilizando un clúster de computadoras [referencia al código].
+Para cada punto del mapa, calculamos su información mutua con todos los otros puntos para cada década (también se probó con correlación de Pearson, pero al no limitarse a variables en números reales ni a relaciones lineales, la información mutua es más general). Este proceso, al ser computacionalmente pesado, se realizó utilizando un clúster de computadoras.
 
-Con estas matrices, procedemos a crear una red geográfica donde, si la información mutua entre cualquier par de nodos es mayor a 0.8 (con la intención de simplificar la red y enfocarnos en las relaciones más significativas), se crea una arista entre ellos. Una vez que tenemos nuestras redes, queremos detectar las comunidades para identificar agrupamientos de nodos fuertemente conectados entre sí. Para ello, utilizamos el método de Louvain [referencia], que ayuda a identificar las comunidades maximizando la modularidad—una medida de la calidad de las particiones en comunidades, donde valores altos indican comunidades bien definidas.
+Con estas matrices, procedemos a crear una red geográfica donde, si la información mutua entre cualquier par de nodos es mayor a 0.8 (con la intención de simplificar la red y enfocarnos en las relaciones más significativas), se crea una arista entre ellos. Una vez que tenemos nuestras redes, queremos detectar las comunidades para identificar agrupamientos de nodos fuertemente conectados entre sí. Para ello, utilizamos el método de Louvain, que ayuda a identificar las comunidades maximizando la modularidad—una medida de la calidad de las particiones en comunidades, donde valores altos indican comunidades bien definidas.
 
 Como queremos ver el cambio a lo largo de las décadas, para cada década se crea una red. Sin embargo, el método de Louvain genera nuevas etiquetas para las comunidades en cada década, lo que implica que no se detectan las mismas comunidades en décadas distintas. Para solucionar esto, creamos una función que compara cada comunidad con las de la década anterior para encontrar las más similares en base a los nodos que las componen, aplicando así la misma etiqueta a las comunidades a lo largo del tiempo. Con esto, aplicamos métricas a las redes, observando la modularidad, el número de comunidades y cuántos nodos permanecen constantes a lo largo de las transiciones entre décadas.
 
@@ -51,4 +48,8 @@ Se puede observar que como es intuitivo las comunidades estan dadas por cercania
 
 
 # DMD (Dinamic model descompsition)
-Al final no se obtuvo nada con esto pero aun asi lo pongo.
+Se inició la implementación de la técnica de Descomposición de Modelos Dinámicos (DMD) y Análisis de Componentes Principales (PCA) para analizar los datos y obtener información sobre la evolución temporal de los diferentes componentes del sistema, con el fin de identificar sus componentes fundamentales. Aunque no se obtuvieron resultados relevantes con estos métodos, a continuación, comparto un resumen del proceso seguido. 
+
+El enfoque se centró en zonas geográficas específicas, como distintas corrientes marinas. El objetivo era analizar cómo cambia la temperatura a lo largo del tiempo y el espacio. Para ello, se utilizó DMD para descomponer las variaciones dinámicas de los datos y generar una reconstrucción que permitiera un análisis más simplificado de estos comportamientos complejos. De esta forma, se trató de entender los componentes fundamentales del sistema, como oscilaciones, tendencias o patrones recurrentes, al evaluar los modos dinámicos que dominan el comportamiento de las corrientes y cómo contribuyen a la variabilidad de la temperatura. Esto tenía como objetivo realizar predicciones y pronósticos sobre el futuro del sistema. 
+
+Lamentablemente, no se logró obtener reconstrucciones que fueran fieles a la realidad, ya que este método matemático requiere de datos muy limpios y sin ruido, algo que no fue posible debido a la forma en que se obtuvieron los datos. Por este motivo, se abandonó esta línea de investigación para concentrarnos en las actividades previamente mencionadas. 
